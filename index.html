@@ -102,8 +102,8 @@
 				endTime = event.timeStamp
 				var duration = (endTime - startTime)/100
 				if(newBall.x == 100 && newBall.y == 650) {
-					console.log(duration)
-					console.log(newAngle.y)
+					// console.log(duration)
+					// console.log(newAngle.y)
 					newBall.shot((duration+angleVelocity[newAngle.y][0]), angleVelocity[newAngle.y][1]);
 					
 				}

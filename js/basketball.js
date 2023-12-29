@@ -5,25 +5,34 @@ var globalID2;
 
 var Score = function (){
     this.playerScore = 0;
+	this.playerShot = 0;
+	this.playerShotMax = 0;
 };
 
 Score.prototype.draw = function (ctx) {
-	ctx.font = "21px Arial";
+	ctx.font = "22px Arial";
     ctx.fillStyle = 'white';
     ctx.fillText("您的關鍵一投 (空白鍵)，攸關台灣未來。", 35, 765);
-   	ctx.font = "24px Arial";
+	ctx.font = "22px Arial";
     ctx.fillStyle = 'white';
-    ctx.fillText("Score: " + this.playerScore, 370, 550);
+    ctx.fillText("Score = " + this.playerScore, 370, 550);
+	ctx.font = "20px Arial";
+    ctx.fillStyle = '#ffff66';
+	let percentage = Number(this.playerScore/this.playerShot*100).toFixed(2);
+	if (this.playerShot == 0) {
+		percentage = "--";
+	}
+	ctx.fillText(`FG = ${this.playerScore} / ${this.playerShot} = ${percentage}%`, 550, 550);
     if (this.playerScore == 3) {
     	ctx.font = "24px Arial";
     	ctx.fillStyle = 'yellow';
-    	ctx.fillText("YOU'RE ON FIRE！", 500, 550);
+    	ctx.fillText("YOU'RE ON FIRE！", 850, 660);
 		globalID = requestAnimationFrame(drawFlames);
 	} 
 	else if (this.playerScore == 10) {
     	ctx.font = "24px Arial";
     	ctx.fillStyle = 'yellow';
-    	ctx.fillText("Excellent Shooter！", 500, 550);
+    	ctx.fillText("Excellent Shooter！", 850, 660);
 	} 
 	else {
 		cancelAnimationFrame(drawFlames);
@@ -41,7 +50,7 @@ AngleClass.prototype.draw = function(ctx){
 	ctx.beginPath();
 	ctx.strokeStyle = 'aqua';
 	ctx.lineWidth = 2.5;
-	ctx.moveTo(135, 605);
+	ctx.moveTo(140, 610);
 	ctx.lineTo(this.x, this.y);
 	ctx.stroke();
 	ctx.closePath();
@@ -120,8 +129,16 @@ Ball.prototype.shot = function (xVelocity,yVelocity){
 };
 
 Ball.prototype.move = function(timeVar,score) {
-	if (score.playerScore > 10) {
+	if (score.playerShot > score.playerShotMax && score.playerShotMax > 0) {
 		score.playerScore = 0;
+		score.playerShot = 1;
+		score.playerShotMax = 0;
+	}
+	if (score.playerScore == 10) {
+		score.playerShotMax = score.playerShot;
+	}
+	if (this.x == 100) {
+		score.playerShot ++;
 	}
     if(!this.collide(newHoop)){ //doesn't collide with any object
 		this.x+=this.xVel;
@@ -138,10 +155,9 @@ Ball.prototype.move = function(timeVar,score) {
     	this.hoopAnimation();
     } else if (this.collide(newHoop) == 2){
     	this.xVel = this.xVel * -1;
-    	
     	this.x += this.xVel-3;
 		this.y += this.yVel;
-		if(this.x + this.radius <= hoop.hoopX - 90 && this.x + this.radius >= hoop.hoopX - 160 && this.y + this.radius >= hoop.hoopY + 125 && this.y + this.radius <= hoop.hoopY + 140) {
+		if(this.x + this.radius <= Hoop.hoopX - 90 && this.x + this.radius >= Hoop.hoopX - 160 && this.y + this.radius >= Hoop.hoopY + 125 && this.y + this.radius <= Hoop.hoopY + 140) {
 			this.made = true;
 			return 1;
 		}
