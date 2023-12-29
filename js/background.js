@@ -10,12 +10,12 @@ var drawCourt = function(){
 	ctx2.strokeStyle = 'white';
 	ctx2.lineWidth = 3.5;
 	ctx2.beginPath();
-	ctx2.moveTo(980,730);
+	ctx2.moveTo(980,760);
 	ctx2.lineTo(700,730);
 	ctx2.stroke();
 	ctx2.closePath();
 	ctx2.beginPath();
-	ctx2.moveTo(980,590);
+	ctx2.moveTo(980,560);
 	ctx2.lineTo(700,590);
 	ctx2.stroke();
 	ctx2.closePath();
