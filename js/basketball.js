@@ -3,10 +3,15 @@
 var globalID;
 var globalID2;
 
-function playSound() {
+function playSwish() {
 	var audio = new Audio('audio/swish.mp3');
 	audio.play();
-  }
+}
+
+function playBounce() {
+	var audio = new Audio('audio/bounce.mp3');
+	audio.play();
+}
 
 var Score = function (){
     this.playerScore = 0;
@@ -144,6 +149,7 @@ Ball.prototype.move = function(timeVar,score) {
 	}
 	if (this.x == 100) {
 		score.playerShot ++;
+		playBounce();
 	}
     if(!this.collide(newHoop)){ //doesn't collide with any object
 		this.x+=this.xVel;
@@ -158,7 +164,7 @@ Ball.prototype.move = function(timeVar,score) {
     } else if (this.collide(newHoop) == 1){
 		score.playerScore ++;
     	this.hoopAnimation();
-		playSound();
+		playSwish();
     } else if (this.collide(newHoop) == 2){
     	this.xVel = this.xVel * -1;
     	this.x += this.xVel-3;
