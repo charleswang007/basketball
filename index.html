@@ -95,6 +95,29 @@
 		
 		var startTime
 		var endTime
+
+		function process_touchstart() {
+			if (theKeyIsDown === false){
+				startTime = event.timeStamp;
+				theKeyIsDown = true
+			}
+		}
+
+		function process_touchend() {
+			if (theKeyIsDown === true){
+				endTime = event.timeStamp
+				var duration = (endTime - startTime)/100
+				if(newBall.x == 100 && newBall.y == 650) {
+					newBall.shot((duration+angleVelocity[newAngle.y][0]), angleVelocity[newAngle.y][1]);
+					
+				}
+				theKeyIsDown = false
+			}
+		}
+
+		canvas.addEventListener("touchstart", process_touchstart, false);
+		canvas.addEventListener("touchend", process_touchend, false);
+
 		canvas.onmousedown = function() {
 			if (theKeyIsDown === false){
 				startTime = event.timeStamp;
