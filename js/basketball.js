@@ -17,7 +17,7 @@ var Score = function (){
 Score.prototype.draw = function (ctx) {
 	ctx.font = "22px Arial";
     ctx.fillStyle = 'white';
-    ctx.fillText("您的關鍵一投 (空白鍵)，攸關台灣未來。", 35, 765);
+    ctx.fillText("您的關鍵一投 (空白鍵 or 滑鼠左鍵)，攸關台灣未來。", 35, 765);
 	ctx.font = "22px Arial";
     ctx.fillStyle = 'white';
     ctx.fillText("Score = " + this.playerScore, 370, 550);

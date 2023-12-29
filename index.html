@@ -3,6 +3,10 @@
 <head>
 	<meta charset="utf-8">
 	<meta name=viewport content="width=device-width, initial-scale=0.5">
+	<meta property="og:title" content="Basketball for 2024" />
+	<meta property="og:url" content="https://charleswang.us/basketball/" />
+	<meta property="og:image" content="images/election.jpg" />
+	<meta property="og:description" content="您的關鍵一投，攸關台灣未來。">
 	<title>Basketball for 2024</title>
 	<link rel="icon" type="image/x-icon" href="images/bball.png">
 	<link rel="stylesheet" href="css/main.css">
@@ -91,6 +95,23 @@
 		
 		var startTime
 		var endTime
+		canvas.onmousedown = function() {
+			if (theKeyIsDown === false){
+				startTime = event.timeStamp;
+				theKeyIsDown = true
+			}
+		}
+		canvas.onmouseup = function() {
+			if (theKeyIsDown === true){
+				endTime = event.timeStamp
+				var duration = (endTime - startTime)/100
+				if(newBall.x == 100 && newBall.y == 650) {
+					newBall.shot((duration+angleVelocity[newAngle.y][0]), angleVelocity[newAngle.y][1]);
+					
+				}
+				theKeyIsDown = false
+			}
+		}
 		$('body').on('keydown', function(event){
 			if (event.keyCode === 32 && theKeyIsDown === false){
 				startTime = event.timeStamp;
