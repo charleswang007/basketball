@@ -3,6 +3,11 @@
 var globalID;
 var globalID2;
 
+function playSound() {
+	var audio = new Audio('audio/swish.mp3');
+	audio.play();
+  }
+
 var Score = function (){
     this.playerScore = 0;
 	this.playerShot = 0;
@@ -153,6 +158,7 @@ Ball.prototype.move = function(timeVar,score) {
     } else if (this.collide(newHoop) == 1){
 		score.playerScore ++;
     	this.hoopAnimation();
+		playSound();
     } else if (this.collide(newHoop) == 2){
     	this.xVel = this.xVel * -1;
     	this.x += this.xVel-3;
