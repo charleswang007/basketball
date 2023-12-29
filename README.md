@@ -1,7 +1,10 @@
-# basketball
+# Basketball
 
-### reference
+### Reference
 https://www.sourcecodester.com/javascript/16377/simple-basketball-free-throw-game-javascript-free-source-code.html
 
-### screenshot
+### Demo
+https://charleswang.us/basketball/
+
+### Screenshot
 ![game](game.png)
