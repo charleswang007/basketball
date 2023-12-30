@@ -321,8 +321,11 @@ Hoop.prototype.draw = function (ctx) {
 	ctx.closePath();
 	//base
 	ctx.beginPath();
-	ctx.fillStyle = 'brown';
-	ctx.fillRect(this.hoopEndX - 50, this.hoopEndY - 175, 100, 180);
+	//ctx.fillStyle = 'lightblue';
+	const image = document.createElement('img');
+	image.src = 'images/flag.png';
+	ctx.fillStyle = ctx.createPattern(image,'repeat');
+	ctx.fillRect(this.hoopEndX - 115, this.hoopEndY - 240, 150, 250);
 	ctx.closePath();
 };
 
