@@ -115,16 +115,16 @@
 			}
 		}
 
-		canvas.addEventListener("touchstart", process_touchstart, false);
-		canvas.addEventListener("touchend", process_touchend, false);
+		window.addEventListener("touchstart", process_touchstart, false);
+		window.addEventListener("touchend", process_touchend, false);
 
-		canvas.onmousedown = function() {
+		window.onmousedown = function() {
 			if (theKeyIsDown === false){
 				startTime = event.timeStamp;
 				theKeyIsDown = true
 			}
 		}
-		canvas.onmouseup = function() {
+		window.onmouseup = function() {
 			if (theKeyIsDown === true){
 				endTime = event.timeStamp
 				var duration = (endTime - startTime)/100

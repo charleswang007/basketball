@@ -27,6 +27,14 @@ Score.prototype.draw = function (ctx) {
     ctx.fillStyle = 'white';
     ctx.fillText("Score = " + this.playerScore, 370, 550);
 	ctx.font = "20px Arial";
+    ctx.fillStyle = 'cornsilk';
+    ctx.fillText("FG (for 10 made shots)：", 300, 600)
+	ctx.font = "20px Arial";
+    ctx.fillStyle = 'palegreen';
+    ctx.fillText("FG < 50% → Average", 300, 630)
+	ctx.fillText("50% <= FG < 70% → Good", 300, 660)
+	ctx.fillText("FG >= 70% → Excellent", 300, 690)
+	ctx.font = "20px Arial";
     ctx.fillStyle = '#ffff66';
 	let percentage = Number(this.playerScore/this.playerShot*100).toFixed(2);
 	if (this.playerShot == 0) {
@@ -42,7 +50,15 @@ Score.prototype.draw = function (ctx) {
 	else if (this.playerScore == 10) {
     	ctx.font = "24px Arial";
     	ctx.fillStyle = 'yellow';
-    	ctx.fillText("Excellent Shooter！", 850, 660);
+		if (percentage < 50) {
+			ctx.fillText("Average Shooter！", 850, 660);
+		}
+		else if (percentage >= 50 && percentage < 70) {
+			ctx.fillText("Good Shooter！", 850, 660);
+		}
+		else {
+			ctx.fillText("Excellent Shooter！", 850, 660);
+		}
 	} 
 	else {
 		cancelAnimationFrame(drawFlames);
@@ -165,6 +181,10 @@ Ball.prototype.move = function(timeVar,score) {
 		score.playerScore ++;
     	this.hoopAnimation();
 		playSwish();
+		document.body.style.backgroundColor = "gold";
+		setTimeout(function(){
+			document.body.style.backgroundColor = "white";
+		  }, 500);
     } else if (this.collide(newHoop) == 2){
     	this.xVel = this.xVel * -1;
     	this.x += this.xVel-3;
