@@ -199,9 +199,7 @@ Ball.prototype.move = function(timeVar,score) {
     	this.x += this.xVel;
 		this.y += this.yVel;
 	} else {
-		this.xVel = this.xVel * -1;
     	this.yVel = this.yVel * -1;
-    	this.x += this.xVel;
 		this.y += this.yVel;
 	}
 };
